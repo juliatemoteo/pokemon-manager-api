@@ -1,0 +1,170 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Pokemon Manager API",
+    "description": "API REST para gerenciamento de Pokemons",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3333",
+  "basePath": "/api/v1",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "tags": [
+          "Pokemons"
+        ],
+        "summary": "Cadastrar um Pokemon",
+        "description": "Cadastra um novo Pokemon no sistema.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Pokemon"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Pokemon cadastrado com sucesso"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Pokemons"
+        ],
+        "summary": "Listar Pokemons",
+        "description": "Lista todos os Pokemons e permite filtrar por tipo.",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Tipo do Pokemon. Exemplo: Electric"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de Pokemons"
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "get": {
+        "tags": [
+          "Pokemons"
+        ],
+        "summary": "Buscar Pokemon por ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pokemon encontrado"
+          },
+          "404": {
+            "description": "Pokemon nao encontrado"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Pokemons"
+        ],
+        "summary": "Atualizar um Pokemon",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Pokemon"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pokemon atualizado com sucesso"
+          },
+          "404": {
+            "description": "Pokemon nao encontrado"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pokemons"
+        ],
+        "summary": "Remover um Pokemon",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pokemon removido com sucesso"
+          },
+          "404": {
+            "description": "Pokemon nao encontrado"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Pokemon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "25"
+        },
+        "name": {
+          "type": "string",
+          "example": "Pikachu"
+        },
+        "type": {
+          "type": "string",
+          "example": "Electric"
+        },
+        "hp": {
+          "type": "number",
+          "example": 35
+        },
+        "attack": {
+          "type": "number",
+          "example": 55
+        },
+        "defense": {
+          "type": "number",
+          "example": 40
+        }
+      }
+    }
+  }
+}
