@@ -12,8 +12,10 @@ export interface UpdatePokemonRequest {
 export class UpdatePokemonUseCase {
   constructor(private pokemonRepository: IPokemonRepository) {}
 
-  async execute(id: string, data: UpdatePokemonRequest): Promise<Pokemon | null> {
-
+  async execute(
+    id: string,
+    data: UpdatePokemonRequest,
+  ): Promise<Pokemon | null> {
     const existingPokemon = await this.pokemonRepository.findById(id);
 
     if (!existingPokemon) {

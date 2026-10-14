@@ -7,7 +7,11 @@
     "dev": "tsx watch src/main/server.ts",
     "build": "tsc",
     "lint": "eslint src --ext .ts",
-    "swagger": "tsx src/main/config/swagger-generator.ts"
+    "swagger": "tsx src/main/config/swagger-generator.ts",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "postinstall": "prisma generate"
   },
   "repository": {
     "type": "git",
@@ -32,11 +36,15 @@
     "eslint-plugin-prettier": "^5.5.6",
     "prettier": "^3.9.6",
     "tsx": "^4.23.13",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "prisma": "6.19.3"
   },
   "dependencies": {
     "express": "^5.2.1",
     "swagger-autogen": "^2.23.7",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "@prisma/client": "6.19.3",
+    "dotenv": "^16.4.7",
+    "zod": "^3.25.76"
   }
 }

@@ -197,7 +197,7 @@ A interface permite visualizar e testar os endpoints disponíveis na API.
 
 ---
 
-## 👤 Autora
+## Autora
 
 Desenvolvido por **Júlia dos Santos Temoteo**.
 

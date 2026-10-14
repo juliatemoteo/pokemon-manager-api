@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Pokemon {
+  id      String @id
+  name    String
+  type    String
+  hp      Int
+  attack  Int
+  defense Int
+}
+
+model Trainer {
+  id        String    @id @default(uuid())
+  name      String
+  email     String    @unique
+  createdAt DateTime  @default(now())
+  captures  Capture[]
+}
+
+model Capture {
+  id          String   @id @default(uuid())
+  trainerId   String
+  trainer     Trainer  @relation(fields: [trainerId], references: [id], onDelete: Cascade)
+  pokemonId   Int
+  name        String
+  imageUrl    String
+  types       String[]
+  hp          Int
+  attack      Int
+  defense     Int
+  active      Boolean  @default(true)
+  capturedAt  DateTime @default(now())
+
+  @@index([trainerId, active])
+}

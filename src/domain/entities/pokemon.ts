@@ -1,53 +1,43 @@
+import { AppError } from '@domain/errors/app-error';
+
 export interface PokemonProps {
-    id: string;
-    name: string;
-    type: string;
-    hp: number;
-    attack: number;
-    defense: number;
+  id: string;
+  name: string;
+  type: string;
+  hp: number;
+  attack: number;
+  defense: number;
 }
 
-export class Pokemon{
-    private props: PokemonProps;
+export class Pokemon {
+  private props: PokemonProps;
 
-    constructor(props: PokemonProps){
-        if(props.hp <= 0){
-            throw new Error('O hp deve ser maior que 0.');
-        }
-
-        if(props.attack <= 0){
-            throw new Error('O ataque deve ser maior que 0.');
-        }
-
-        if(props.defense <= 0){
-            throw new Error('A defesa deve ser maior que 0.');
-        }
-
-        this.props = props;
+  constructor(props: PokemonProps) {
+    if (props.hp <= 0 || props.attack <= 0 || props.defense <= 0) {
+      throw new AppError('HP, ataque e defesa devem ser maiores que zero.');
     }
+    this.props = props;
+  }
 
-    get id() {
+  get id() {
     return this.props.id;
   }
-
-  get type() {
-    return this.props.type;
-  }
-
-  get hp() {
-    return this.props.hp;
-  }
-
   get name() {
     return this.props.name;
   }
-
+  get type() {
+    return this.props.type;
+  }
+  get hp() {
+    return this.props.hp;
+  }
   get attack() {
     return this.props.attack;
   }
-
   get defense() {
     return this.props.defense;
   }
-  
+  toJSON(): PokemonProps {
+    return { ...this.props };
+  }
 }
